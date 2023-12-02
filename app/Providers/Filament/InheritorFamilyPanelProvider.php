@@ -18,13 +18,13 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-class InheritorChildPanelProvider extends PanelProvider
+class InheritorFamilyPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('inheritor-child')
-            ->path('inheritor-child')
+            ->id('inheritor-family')
+            ->path('inheritor-family')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
@@ -52,6 +52,9 @@ class InheritorChildPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugins([
+                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
             ]);
     }
 }

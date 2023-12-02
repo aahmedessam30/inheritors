@@ -3,16 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 use Laravel\Sanctum\HasApiTokens;
 use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -47,6 +48,32 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return match ($panel->getId()) {
+            'admin'            => $this->hasRole(['super-admin', 'admin']),
+            'inheritor'        => $this->hasRole(['super-admin', 'admin', 'inheritor']),
+            'inheritor-family' => $this->hasRole(['super-admin', 'admin', 'inheritor-family']),
+            default            => false,
+        };
+    }
+
+    // Relationships
+    public function inheritor()
+    {
+        return $this->belongsTo(User::class, 'inheritor_id')->whereNull('inheritor_id');
+    }
+
+    public function inheritorFamily()
+    {
+        return $this->hasMany(User::class, 'inheritor_id', 'id')->whereNotNull('inheritor_id');
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
+    }
+
+    public function receipts()
+    {
+        return $this->hasMany(Receipt::class);
     }
 }
