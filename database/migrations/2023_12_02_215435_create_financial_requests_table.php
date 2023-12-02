@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('financial_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('inheritor_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId('inheritor_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
             $table->enum('request_type', ['personal_needs', 'house_improvement', 'other'])->default('personal_needs');
             $table->decimal('amount', 10, 2);
             $table->text('reason')->nullable();
