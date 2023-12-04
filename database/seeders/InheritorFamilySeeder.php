@@ -27,21 +27,21 @@ class InheritorFamilySeeder extends Seeder
                 'email'        => 'ahmedessam@inheritors.com',
                 'password'     => Hash::make('01094286927'),
                 'inheritor_id' => $essamLabibId,
-                'roles'        => ['super-admin', 'inheritor-family']
+                'roles'        => ['super_admin', 'inheritor_family']
             ],
             [
                 'name'         => 'Alaa Essam',
                 'email'        => 'alaaessam@inheritors.com',
                 'password'     => Hash::make('alaaessam'),
                 'inheritor_id' => $essamLabibId,
-                'roles'        => ['admin', 'inheritor-family']
+                'roles'        => ['admin', 'inheritor_family']
             ],
             [
                 'name'         => 'Hoda Samir',
                 'email'        => 'hodasamir@inheritors.com',
                 'password'     => Hash::make('hodasamir'),
                 'inheritor_id' => $essamLabibId,
-                'roles'        => ['admin', 'inheritor-family']
+                'roles'        => ['admin', 'inheritor_family']
             ],
             [
                 'name'         => 'Nora Mohamed Labib',
@@ -124,7 +124,7 @@ class InheritorFamilySeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            $roles = $user['roles'] ?? 'inheritor-family';
+            $roles = $user['roles'] ?? 'inheritor_family';
             unset($user['roles']);
 
             $createdUser = \App\Models\User::create([...$user, 'email_verified_at' => now()]);

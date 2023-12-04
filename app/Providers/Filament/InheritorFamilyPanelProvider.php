@@ -29,12 +29,12 @@ class InheritorFamilyPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
-            ->discoverResources(in: app_path('Filament/InheritorChild/Resources'), for: 'App\\Filament\\InheritorChild\\Resources')
-            ->discoverPages(in: app_path('Filament/InheritorChild/Pages'), for: 'App\\Filament\\InheritorChild\\Pages')
+            ->discoverResources(in: app_path('Filament/InheritorFamily/Resources'), for: 'App\\Filament\\InheritorFamily\\Resources')
+            ->discoverPages(in: app_path('Filament/InheritorFamily/Pages'), for: 'App\\Filament\\InheritorFamily\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/InheritorChild/Widgets'), for: 'App\\Filament\\InheritorChild\\Widgets')
+            ->discoverWidgets(in: app_path('Filament/InheritorFamily/Widgets'), for: 'App\\Filament\\InheritorFamily\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
