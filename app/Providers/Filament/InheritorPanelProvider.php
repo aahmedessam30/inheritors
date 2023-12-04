@@ -27,7 +27,7 @@ class InheritorPanelProvider extends PanelProvider
             ->path('inheritor')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Sky,
             ])
             ->discoverResources(in: app_path('Filament/Inheritor/Resources'), for: 'App\\Filament\\Inheritor\\Resources')
             ->discoverPages(in: app_path('Filament/Inheritor/Pages'), for: 'App\\Filament\\Inheritor\\Pages')

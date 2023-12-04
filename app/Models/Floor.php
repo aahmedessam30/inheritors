@@ -11,7 +11,7 @@ class Floor extends Model
 
 protected $fillable = [
         'real_estate_id',
-        'floor',
+        'name',
         'type',
         'status',
         'rent',
