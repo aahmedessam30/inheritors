@@ -17,12 +17,8 @@ class Contract extends Model
         'duration',
         'start_date',
         'end_date',
-        'price',
-        'paid',
-        'remaining',
-        'insurance_price',
-        'insurance_paid',
-        'insurance_remaining',
+        'rent',
+        'insurance',
         'description',
         'is_paid',
         'completed_date',
@@ -34,12 +30,22 @@ class Contract extends Model
     ];
 
     protected $casts = [
-        'start_date' => 'date',
-        'end_date' => 'date',
-        'completed_date' => 'date',
+        'start_date'      => 'date',
+        'end_date'        => 'date',
+        'completed_date'  => 'date',
         'terminated_date' => 'date',
-        'canceled_date' => 'date',
+        'canceled_date'   => 'date',
+        'rent'            => 'float',
+        'insurance'       => 'float',
     ];
+
+    // Attributes
+    public function getDurationWithYears()
+    {
+        return $this->duration == 1
+            ? "$this->duration " . (app()->getLocale() == 'ar' ? 'سنة' : 'Year')
+            : "$this->duration " . (app()->getLocale() == 'ar' ? 'سنوات' : 'Years');
+    }
 
     // Relationships
     public function renter()

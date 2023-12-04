@@ -16,6 +16,12 @@ class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles, HasPanelShield;
 
+    const SUPER_ADMINS = [
+        'ahmedessam@inheritors.com',
+        'alaaessam@inheritors.com',
+        'hodasamir@inheritors.com',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *

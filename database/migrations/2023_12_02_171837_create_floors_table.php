@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignIdFor(\App\Models\RealEstate::class)->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->enum('name', ['ground', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'])->default('ground');
             $table->enum('type', ['apartment', 'shop', 'office', 'warehouse', 'land', 'villa', 'building', 'other'])->default('apartment');
-            $table->enum('status', ['rented', 'available'])->default('available');
+            $table->enum('status', ['rented', 'available'])->default('rented');
             $table->decimal('rent', 10, 2)->nullable();
             $table->decimal('insurance', 10, 2)->nullable();
             $table->text('description')->nullable();

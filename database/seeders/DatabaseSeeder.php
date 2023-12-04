@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             ShieldSeeder::class,
             InheritorSeeder::class,
             InheritorFamilySeeder::class,
+            RealEstateSeeder::class,
+            FloorSeeder::class,
+            RenterSeeder::class,
         ]);
     }
 }

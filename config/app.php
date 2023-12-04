@@ -5,6 +5,9 @@ use Illuminate\Support\ServiceProvider;
 
 return [
 
+    'currency_ar' => 'جنيه',
+    'currency_en' => 'EGP',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
