@@ -20,12 +20,29 @@ class Rental extends Model
     ];
 
     protected $casts = [
-        'paid_date' => 'datetime',
+        'amount'    => 'float',
+        'paid'      => 'float',
+        'remaining' => 'float',
+    ];
+
+    protected $appends = [
+        'is_paid',
     ];
 
     // Relationships
     public function contract()
     {
         return $this->belongsTo(Contract::class);
+    }
+
+    public function transactions()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable');
+    }
+
+    // Accessors
+    public function getIsPaidAttribute()
+    {
+        return $this->status === 'paid';
     }
 }

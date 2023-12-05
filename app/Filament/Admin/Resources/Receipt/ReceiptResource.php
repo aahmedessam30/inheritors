@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Admin\Resources\FinancialRequest;
+namespace App\Filament\Admin\Resources\Receipt;
 
-use App\Filament\Admin\Resources\FinancialRequest\FinancialRequestResource\Pages;
-use App\Filament\Admin\Resources\FinancialRequest\FinancialRequestResource\RelationManagers;
-use App\Models\FinancialRequest;
+use App\Filament\Admin\Resources\Receipt\ReceiptResource\Pages;
+use App\Filament\Admin\Resources\Receipt\ReceiptResource\RelationManagers;
+use App\Models\Receipt;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FinancialRequestResource extends Resource
+class ReceiptResource extends Resource
 {
-    protected static ?string $model = FinancialRequest::class;
+    protected static ?string $model = Receipt::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+    protected static ?string $navigationIcon = 'heroicon-o-receipt-percent';
 
-    protected static ?string $slug = 'financial-requests';
+    protected static ?string $slug = 'receipts';
 
     public static function getNavigationGroup(): ?string
     {
@@ -28,22 +28,22 @@ class FinancialRequestResource extends Resource
 
     public static function getPluralModelLabel(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.receipts');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.receipts');
     }
 
     public static function getLabel(): ?string
     {
-        return __('trans.financial-request');
+        return __('trans.receipt');
     }
 
     public static function getBreadcrumb(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.receipts');
     }
 
     public static function form(Form $form): Form
@@ -83,9 +83,9 @@ class FinancialRequestResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFinancialRequests::route('/'),
-            'create' => Pages\CreateFinancialRequest::route('/create'),
-            'edit' => Pages\EditFinancialRequest::route('/{record}/edit'),
+            'index' => Pages\ListReceipts::route('/'),
+            'create' => Pages\CreateReceipt::route('/create'),
+            'edit' => Pages\EditReceipt::route('/{record}/edit'),
         ];
     }
 }

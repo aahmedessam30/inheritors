@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rentals', function (Blueprint $table) {
+        Schema::create('financial_assets', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Contract::class)->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
+            $table->foreignIdFor(\App\Models\FinancialAccount::class)->nullable()->constrained()->nullOnDelete()->cascadeOnUpdate();
             $table->decimal('amount', 10, 2)->default(0);
-            $table->decimal('paid', 10, 2)->default(0);
-            $table->decimal('remaining', 10, 2)->default(0);
             $table->text('description')->nullable();
-            $table->timestamp('paid_date')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rentals');
+        Schema::dropIfExists('financial_assets');
     }
 };

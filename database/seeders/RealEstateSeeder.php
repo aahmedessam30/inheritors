@@ -21,7 +21,7 @@ class RealEstateSeeder extends Seeder
                 'zip'           => '12345',
                 'lat'           => '31.037933',
                 'lng'           => '31.381523',
-                'price'         => '1000000',
+                'price'         => 1000000,
                 'floors'        => 3,
                 'description'   => 'بيت الحاج لبيب عبد الجليل',
                 'status'        => 'for_sale'

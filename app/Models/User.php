@@ -83,4 +83,14 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Receipt::class);
     }
+
+    public function financialAccounts()
+    {
+        return $this->hasMany(FinancialAccount::class, 'inheritor_id');
+    }
+
+    public function transactionable_by()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable_by');
+    }
 }

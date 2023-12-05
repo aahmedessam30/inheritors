@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Contract extends Model
 {
@@ -39,13 +40,9 @@ class Contract extends Model
         'insurance'       => 'float',
     ];
 
-    // Attributes
-    public function getDurationWithYears()
-    {
-        return $this->duration == 1
-            ? "$this->duration " . (app()->getLocale() == 'ar' ? 'سنة' : 'Year')
-            : "$this->duration " . (app()->getLocale() == 'ar' ? 'سنوات' : 'Years');
-    }
+    protected $appends = [
+        'name',
+    ];
 
     // Relationships
     public function renter()
@@ -61,5 +58,21 @@ class Contract extends Model
     public function receipts()
     {
         return $this->hasMany(Receipt::class);
+    }
+
+    // Attributes
+    public function getNameAttribute()
+    {
+        return __("trans.contract_name", [
+            'floor'  => __('trans.' . Str::snake(strtolower($this->floor->name)) . '_floor'),
+            'renter' => $this->renter->name,
+        ]);
+    }
+
+    public function getDurationWithYears()
+    {
+        return $this->duration == 1
+            ? "$this->duration " . (app()->getLocale() == 'ar' ? 'سنة' : 'Year')
+            : "$this->duration " . (app()->getLocale() == 'ar' ? 'سنوات' : 'Years');
     }
 }

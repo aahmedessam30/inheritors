@@ -27,4 +27,9 @@ class Renter extends Model
     {
         return $this->hasMany(Contract::class);
     }
+
+    public function transactionable_by()
+    {
+        return $this->morphMany(Transaction::class, 'transactionable_by');
+    }
 }

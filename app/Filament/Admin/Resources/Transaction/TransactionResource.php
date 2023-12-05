@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\Admin\Resources\FinancialRequest;
+namespace App\Filament\Admin\Resources\Transaction;
 
-use App\Filament\Admin\Resources\FinancialRequest\FinancialRequestResource\Pages;
-use App\Filament\Admin\Resources\FinancialRequest\FinancialRequestResource\RelationManagers;
-use App\Models\FinancialRequest;
+use App\Filament\Admin\Resources\Transaction\TransactionResource\Pages;
+use App\Filament\Admin\Resources\Transaction\TransactionResource\RelationManagers;
+use App\Models\Transaction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FinancialRequestResource extends Resource
+class TransactionResource extends Resource
 {
-    protected static ?string $model = FinancialRequest::class;
+    protected static ?string $model = Transaction::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-ticket';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static ?string $slug = 'financial-requests';
+    protected static ?string $slug = 'transactions';
 
     public static function getNavigationGroup(): ?string
     {
@@ -28,22 +28,22 @@ class FinancialRequestResource extends Resource
 
     public static function getPluralModelLabel(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.transactions');
     }
 
     public static function getNavigationLabel(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.transactions');
     }
 
     public static function getLabel(): ?string
     {
-        return __('trans.financial-request');
+        return __('trans.transaction');
     }
 
     public static function getBreadcrumb(): string
     {
-        return __('trans.financial-requests');
+        return __('trans.transactions');
     }
 
     public static function form(Form $form): Form
@@ -83,9 +83,9 @@ class FinancialRequestResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFinancialRequests::route('/'),
-            'create' => Pages\CreateFinancialRequest::route('/create'),
-            'edit' => Pages\EditFinancialRequest::route('/{record}/edit'),
+            'index' => Pages\ListTransactions::route('/'),
+            'create' => Pages\CreateTransaction::route('/create'),
+            'edit' => Pages\EditTransaction::route('/{record}/edit'),
         ];
     }
 }
